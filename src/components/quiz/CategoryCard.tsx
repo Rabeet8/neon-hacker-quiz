@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Shield, Brain, KeySquare, Terminal } from "lucide-react";
@@ -7,13 +6,18 @@ import { cn } from "@/lib/utils";
 
 interface CategoryCardProps {
   category: QuizCategory;
+  onClick?: () => void;
 }
 
-const CategoryCard: React.FC<CategoryCardProps> = ({ category }) => {
+const CategoryCard: React.FC<CategoryCardProps> = ({ category, onClick }) => {
   const navigate = useNavigate();
   
   const handleClick = () => {
-    navigate(`/category/${category.id}`);
+    if (onClick) {
+      onClick();
+    } else {
+      navigate(`/category/${category.id}`);
+    }
   };
 
   // Map category icons to Lucide components
